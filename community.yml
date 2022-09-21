@@ -52,6 +52,7 @@
     - { role: filezilla, tags: ['filezilla'] }
     - { role: firefly, tags: ['firefly'] }
     - { role: flaresolverr, tags: ['flaresolverr'] }
+    - { role: foundryvtt, tags: ['foundryvtt']}
     - { role: funkwhale, tags: ['funkwhale'] }
     - { role: gazee, tags: ['gazee'] }
     - { role: gitea, tags: ['gitea'] }
