@@ -26,8 +26,8 @@
   with_items:
     - /opt/foundryvtt/Config
     - /opt/foundryvtt/Logs
-    - /mnt/local/Foundry/Data
-    - /mnt/local/downloads/foundryvtt/cache    
+    - /mnt/local/Media/Foundry/Data
+    - /mnt/local/downloads/foundryvtt/cache
 
 - name: Create and start container
   docker_container:
@@ -50,12 +50,12 @@
       FOUNDRY_PASSWORD: "{{ foundryvtt.password | default(omit) }}"
       FOUNDRY_USERNAME: "{{ foundryvtt.username | default(omit) }}"
       FOUNDRY_ADMIN_KEY: "{{ foundryvtt.admin_key | default(omit) }}"
-      FOUNDRY_VERSION: "{{ foundryvtt.version | default(omit) }}"
+      FOUNDRY_VERSION: "{{ foundryvtt.version }}"
       FOUNDRY_WORLD: "{{ foundryvtt.world | default(omit) }}"
       FOUNDRY_LICENSE_KEY: "{{ foundryvtt.license | default(omit) }}"
       FOUNDRY_RELEASE_URL: "{{ foundryvtt.release_url | default(omit) }}"
     volumes:
-      - "/mnt/local/Foundry/Data:/data/Data"      
+      - "/mnt/local/Media/Foundry/Data:/data/Data"
       - "/opt/foundryvtt/Config:/data/Config"
       - "/opt/foundryvtt/Logs:/data/Logs"
       - "/mnt/local/downloads/foundryvtt/cache:/data/Cache"
