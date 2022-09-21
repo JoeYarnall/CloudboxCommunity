@@ -24,7 +24,10 @@
 - name: Create Foundry directories
   file: "path={{ item }} state=directory mode=0775 owner={{ user.name }} group={{ user.name }}"
   with_items:
-    - /mnt/local/Foundry
+    - /opt/foundryvtt/Config
+    - /opt/foundryvtt/Logs
+    - /mnt/local/Foundry/Data
+    - /mnt/local/downloads/foundryvtt/cache    
 
 - name: Create and start container
   docker_container:
@@ -40,8 +43,10 @@
       VIRTUAL_PORT: "30000"
       LETSENCRYPT_HOST: "{{ foundryvtt.subdomain }}.{{ user.domain }}"
       LETSENCRYPT_EMAIL: "{{ user.email }}"
+      CONTAINER_CACHE: "/data/Cache"
       CONTAINER_PRESERVE_CONFIG: "{{ foundryvtt.preserve_config }}"
       FOUNDRY_MINIFY_STATIC_FILES: "{{ foundryvtt.minify }}"
+      FOUNDRY_HOSTNAME: "{{ foundryvtt.subdomain }}.{{ user.domain }}"
       FOUNDRY_PASSWORD: "{{ foundryvtt.password | default(omit) }}"
       FOUNDRY_USERNAME: "{{ foundryvtt.username | default(omit) }}"
       FOUNDRY_ADMIN_KEY: "{{ foundryvtt.admin_key | default(omit) }}"
@@ -50,7 +55,10 @@
       FOUNDRY_LICENSE_KEY: "{{ foundryvtt.license | default(omit) }}"
       FOUNDRY_RELEASE_URL: "{{ foundryvtt.release_url | default(omit) }}"
     volumes:
-      - "/mnt/local/Foundry:/data"
+      - "/mnt/local/Foundry/Data:/data/Data"      
+      - "/opt/foundryvtt/Config:/data/Config"
+      - "/opt/foundryvtt/Logs:/data/Logs"
+      - "/mnt/local/downloads/foundryvtt/cache:/data/Cache"
       - "/mnt:/mnt"
     labels:
       "com.github.cloudbox.cloudbox_managed": "true"
