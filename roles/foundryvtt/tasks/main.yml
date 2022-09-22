@@ -44,8 +44,8 @@
       LETSENCRYPT_HOST: "{{ foundryvtt.subdomain }}.{{ user.domain }}"
       LETSENCRYPT_EMAIL: "{{ user.email }}"
       CONTAINER_CACHE: "/data/Cache"
-      CONTAINER_PRESERVE_CONFIG: true
-      FOUNDRY_MINIFY_STATIC_FILES: true
+      CONTAINER_PRESERVE_CONFIG: "{{ foundryvtt.preserve_config }}"
+      FOUNDRY_MINIFY_STATIC_FILES: "{{ foundryvtt.minify }}"
       FOUNDRY_HOSTNAME: "{{ foundryvtt.subdomain }}.{{ user.domain }}"
       FOUNDRY_PASSWORD: "{{ foundryvtt.password | default(omit) }}"
       FOUNDRY_USERNAME: "{{ foundryvtt.username | default(omit) }}"

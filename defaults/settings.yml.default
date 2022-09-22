@@ -49,6 +49,8 @@ easycountdown:
 foundryvtt:
   subdomain: foundry
   version: "9.280"
+  minify: "true"
+  preserve_config: "true"
 gitea: 
   subdomain: git
 goplaxt: 
